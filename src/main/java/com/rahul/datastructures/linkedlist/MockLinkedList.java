@@ -15,15 +15,35 @@ public class MockLinkedList<T> {
     public void add(T data) {
         if(this.head == null) {
             this.head = new LinkedListNode<T>(data);
-            this.size++;
         } else {
             LinkedListNode<T> node = this.head;
             while(node.next != null) {
                 node = node.next;
             }
             node.next = new LinkedListNode<T>(data);
-            this.size++;
         }
+        this.size++;
+    }
+
+    public void insertAt(int idx, T data) {
+        if(this.head == null) {
+            this.head = new LinkedListNode<T>(data);
+        } if(idx == 0) {
+            LinkedListNode<T> newNode = new LinkedListNode<T>(data);
+            newNode.next = this.head;
+            this.head = newNode;
+        } else {
+            LinkedListNode<T> node = this.head;
+            int i = 1;
+            while(node.next != null && i < idx) {
+                node = node.next;
+                i++;
+            }
+            LinkedListNode<T> newNode = new LinkedListNode<T>(data);
+            newNode.next = node.next;
+            node.next = newNode;
+        }
+        this.size++;
     }
 
     public T remove(T data) {

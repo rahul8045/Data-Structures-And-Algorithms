@@ -15,7 +15,6 @@ public class MockDoubleLinkedList<T> {
     public void add(T data) {
         if(this.head == null) {
             this.head = new DoubleLinkedListNode<T>(data);
-            this.size++;
         } else {
             DoubleLinkedListNode<T> node = this.head;
             while(node.next != null) {
@@ -24,8 +23,34 @@ public class MockDoubleLinkedList<T> {
             DoubleLinkedListNode<T> newNode = new DoubleLinkedListNode<T>(data);
             newNode.previous = node.next;
             node.next = newNode;
-            this.size++;
         }
+        this.size++;
+    }
+
+    public void insertAt(int idx, T data) {
+        if(this.head == null) {
+            this.head = new DoubleLinkedListNode<T>(data);
+        } else if(idx == 0) {
+            DoubleLinkedListNode<T> newNode = new DoubleLinkedListNode<T>(data);
+            this.head.previous = newNode;
+            newNode.next = this.head;
+            this.head = newNode;
+        } else {
+            DoubleLinkedListNode<T> node = this.head;
+            int i=1;
+            while(node.next != null && i < idx) {
+                node = node.next;
+                i++;
+            }
+            DoubleLinkedListNode<T> newNode = new DoubleLinkedListNode<T>(data);
+            newNode.next = node.next;
+            if(node.next != null) {
+                node.next.previous = newNode;
+            }
+            newNode.previous = node;
+            node.next = newNode;
+        }
+        this.size++;
     }
 
     public T remove(T data) {

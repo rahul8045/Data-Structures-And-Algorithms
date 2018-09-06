@@ -11,6 +11,7 @@ public class ArrayToLinkedListTest {
     public void toLinkedList() {
         ArrayToLinkedList arrayToLinkedList = new ArrayToLinkedList();
         MockLinkedList<Integer> linkedList = arrayToLinkedList.toLinkedList(arr);
+        linkedList.insertAt(4, 12);
         System.out.println(linkedList.get(-1));
         System.out.println(linkedList);
     }
@@ -19,6 +20,7 @@ public class ArrayToLinkedListTest {
     public void toDoubleLinkedList() {
         ArrayToLinkedList arrayToLinkedList = new ArrayToLinkedList();
         MockDoubleLinkedList<Integer> linkedList = arrayToLinkedList.toDoubleLinkedList(arr);
+        linkedList.insertAt(4, 12);
         System.out.println(linkedList.get(-1));
         System.out.println(linkedList);
     }
